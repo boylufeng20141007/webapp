@@ -4,23 +4,27 @@
 'use strict';
 var path = require('path');
 var fs = require('fs');
-
+var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var debug = process.env.NODE_ENV !== 'prod'? true : false;
-
- var config = {
+console.log('***当前开发环境: '+debug?'开发环境':'生产环境'+'***');
+var config = {
  	entry: {
- 		index: './src/page/index/js/index.js'
+ 		//index: './src/page/index/js/index.js'
  	},
  	output: {
- 		path: path.resolve(__dirname, 'assets'),
+ 		path: path.resolve(__dirname, 'assets', 'app'),
  		//filename: '[name].[hash:8].js'
- 		filename: '[name].js'
+ 		filename: 'page/[name]/js/[name].js'
  	},
  	module: {
  		loaders: [
- 			{
- 				test: /\.css$/, loader: 'style!css'
- 			}
+ 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "autoprefixer-loader"])},
+            {test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader'},
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader!jsx-loader'},
+            {test: /\.jsx$/, loader: 'babel-loader!jsx-loader'}
  		]
  	},
  	resolve: {
@@ -37,8 +41,11 @@ var debug = process.env.NODE_ENV !== 'prod'? true : false;
             modules : __dirname + '/src/base/js/modules'
  		},
  		extensions: ['', '.js', '.css', '.jsx', '.scss', '.ejs', '.png', '.jpg']
- 	}
- };
+ 	},
+ 	plugins: [
+        new ExtractTextPlugin('page/[name]/css/[name].css')
+    ]
+};
 
 //获取页面列表
 function getPages() {
@@ -47,8 +54,6 @@ function getPages() {
     pages.forEach(function(file) {
         ret.push(file);
     });
-    console.log('***页面列表文件名***');
-    console.log(ret);
     return ret;
 }
 //设置webpack配置对象
@@ -59,6 +64,13 @@ function setConfig() {
             config.entry[filename] = './src/page/' + filename + '/js/' + filename + '.js';
         }
 	});
+	//提取公共模块
+    /*var chunks = Object.keys(config.entry);
+    config.plugins.push(new CommonsChunkPlugin({
+        name: 'vendors',
+        chunks: chunks,
+        minChunks: chunks.length // 提取所有chunks共同依赖的模块
+    }));*/
 }
 //删除webpack上一次打包的文件
 function deleteBundleFile(path) {
