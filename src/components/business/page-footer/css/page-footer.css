@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/**
+ * @页脚样式
+ */
+/**
+ * 利用px计算出对应的rem值
+ */
+.page-footer {
+  color: #f00;
+}

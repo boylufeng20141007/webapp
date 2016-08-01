@@ -1,0 +1,9 @@
+/**
+ * @页脚样式
+ */
+@import "compass/css3";
+@import 'base/scss/function/px-to-rem';
+
+.page-footer {
+	color: #f00;
+}

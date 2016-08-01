@@ -21,7 +21,10 @@ var config = {
  	},
  	module: {
  		loaders: [
- 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader"])}
+ 			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "autoprefixer-loader"])},
+            {test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader'},
+            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader!jsx-loader'},
+            {test: /\.jsx$/, loader: 'babel-loader!jsx-loader'}
  		]
  	},
  	resolve: {
