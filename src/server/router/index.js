@@ -8,9 +8,9 @@ function indexRouter(router){
 	router.get('/', function *(next){
 		yield this.render('index/tmpl/index', {
 			layout: false,
-			title: '首页',
+			title: '唯品会-FE首页',
 			pageHeader: {
-				title: '首页'
+				title: 'FEVIP'
 			}
 		});
 	});
