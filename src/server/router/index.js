@@ -14,7 +14,7 @@ function indexRouter(router){
 			}
 		});
 	});
-	router.get('/sign', function *(next){
+	router.get('/login', function *(next){
 		yield this.render('sign-in', {
 			layout: false,
 			title: '登录'
