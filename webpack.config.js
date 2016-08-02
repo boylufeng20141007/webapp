@@ -8,8 +8,9 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+var ProvidePlugin = webpack.ProvidePlugin;
 var debug = process.env.NODE_ENV !== 'prod'? true : false;
-console.log('***当前开发环境: '+debug?'开发环境':'生产环境'+'***');
+console.log(debug?'***当前环境:开发环境':'***当前环境:生产环境'+'***');
 var config = {
  	entry: {
  		//index: './src/page/index/js/index.js'
@@ -24,7 +25,11 @@ var config = {
  			{test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", ["css-loader", "autoprefixer-loader"])},
             {test: /\.less$/, loader: 'style-loader!css-loader!autoprefixer-loader!less-loader'},
             {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader!jsx-loader'},
-            {test: /\.jsx$/, loader: 'babel-loader!jsx-loader'}
+            {test: /\.jsx$/, loader: 'babel-loader!jsx-loader'},
+            //{test: /\.(eot|woff)$/, loader: "file-loader" },
+            //test: /\.(png|jpg|gif)$/,loader: 'file?name=[name].[ext]?[hash]'}
+            {test: /\.(png|jpg|gif)$/, loader: 'url-looder?limit=1024&name=' + (debug?'base/img/[hash:8].[name].[ext]':'static/base/img/[hase:8].[name].[ext]')},
+            {test: /\.(eot|svg|ttf|woff)$/, loader: 'url-loader?limit=1024&name=' + (debug?'base/css/font/[name].[ext]':'static/base/css/font/[hase:8].[name].[ext]')},
  		]
  	},
  	resolve: {
@@ -40,10 +45,16 @@ var config = {
             api : __dirname + '/src/base/js/api',
             modules : __dirname + '/src/base/js/modules'
  		},
- 		extensions: ['', '.js', '.css', '.jsx', '.scss', '.ejs', '.png', '.jpg']
+ 		//extensions: ['', '.js', '.css', '.jsx', '.scss', '.ejs', '.png', '.jpg']
+        extensions: ['', '.coffee', '.js', '.jsx', '.png', '.jpg', '.gif', '.css', '.scss', 'ejs', 'tpl']
  	},
  	plugins: [
-        new ExtractTextPlugin('page/[name]/css/[name].css')
+        new ExtractTextPlugin('page/[name]/css/[name].css'),
+        /*new ProvidePlugin({
+            //$: 'zepto',
+            //jQuery: 'jquery',
+            //'window.jQuery': 'jquery'
+        })*/
     ]
 };
 
@@ -74,7 +85,7 @@ function setConfig() {
 }
 //删除webpack上一次打包的文件
 function deleteBundleFile(path) {
-	if (debug) {
+	if (!debug) {
         return;
     }
     var files = [];
@@ -91,7 +102,13 @@ function deleteBundleFile(path) {
         fs.rmdirSync(path);
     }
 }
+//TODO 修改路径
+function updateIconfontUrl(path){
+    if(!fs.existsSync(path)) return;
+}
 deleteBundleFile(path.resolve(__dirname, 'assets'));
+//deleteBundleFile(path.resolve(__dirname, 'assets', 'app', 'css', 'font'));
+updateIconfontUrl(path.resolve(__dirname, 'src', 'css', 'common.css'));
 setConfig();
 
  module.exports = config;

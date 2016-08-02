@@ -59,5 +59,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
  * 利用px计算出对应的rem值
  */
 .page-header {
+  position: relative;
   font-size: 1.06667rem;
+  border-bottom: 1px solid #222;
+}
+.page-header .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

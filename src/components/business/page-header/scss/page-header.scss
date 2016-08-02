@@ -4,5 +4,12 @@
 @import 'base/scss/function/px-to-rem';
 
 .page-header {
+	position: relative;
 	font-size: pxToRem(40);
+	border-bottom: 1px solid #222;
+	.title {
+		position: absolute;
+	    left: 50%;
+    	transform: translateX(-50%);
+	}
 }
