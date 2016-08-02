@@ -10,8 +10,7 @@ var pageFooter = React.createClass({
 	render: function(){
 		return (
 			<div className="page-footer">
-				<i className="icon-menu" id="J-icon-menu"></i>
-				<div>页脚</div>
+				<div className="title">页脚</div>
 			</div>
 		);
 	}

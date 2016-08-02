@@ -6,5 +6,11 @@
 //@import "base/scss/common";
 
 .page-footer {
-	color: #f00;
+	position: relative;
+	color: #333;
+	.title {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }

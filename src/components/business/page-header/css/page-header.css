@@ -61,7 +61,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .page-header {
   position: relative;
   font-size: 1.06667rem;
-  border-bottom: 1px solid #222;
+  color: #333;
+  border-bottom: 1px solid #4cae4c;
 }
 .page-header .title {
   position: absolute;

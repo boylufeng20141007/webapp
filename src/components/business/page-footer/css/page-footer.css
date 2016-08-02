@@ -6,5 +6,11 @@
  * 利用px计算出对应的rem值
  */
 .page-footer {
-  color: #f00;
+  position: relative;
+  color: #333;
+}
+.page-footer .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

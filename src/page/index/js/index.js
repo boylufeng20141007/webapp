@@ -19,6 +19,8 @@ function loaderReactComponent(){
 	//React.render(<PageFooter />, document.getElementById('J-page-footer'));
 	Render(<PageFooter />, document.getElementById('J-page-footer'));//渲染页脚组件
 	//Render(PageFooter, 'J-page-footer');
+
+	pageHeader.init();//初始化页头组件
 }
 //console.log($);
 loaderReactComponent();
