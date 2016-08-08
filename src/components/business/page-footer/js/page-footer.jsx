@@ -7,10 +7,13 @@ require('../css/page-footer.css');
 
 var React = require('react');
 var pageFooter = React.createClass({
+	testClick: function () {
+		alert('xxx');
+	},
 	render: function(){
 		return (
 			<div className="page-footer">
-				<div className="title">页脚</div>
+				<div className="title" onClick={this.testClick}>页脚</div>
 			</div>
 		);
 	}

@@ -1,9 +1,9 @@
+/**
+ * @description 根据svg生成字体图标
+ */
 'use strict';
-var gulp = require('gulp');
-
-var generateIconfontCss = require('./gulp/generate-iconfont-css');
-var replaceIconfontUrl  = require('./gulp/replace-iconfont-path');
-/*	iconfont = require('gulp-iconfont'),
+var gulp = require('gulp'),
+	iconfont = require('gulp-iconfont'),
 	iconfontCss = require('gulp-iconfont-css');
 
 
@@ -21,7 +21,4 @@ gulp.task('iconfont', function(){
 			formats: ['ttf', 'eot', 'woff', 'svg']
 		}))
 		.pipe(gulp.dest('src/base/css/font/'));
-});*/
-
-//run default taks of gulp
-gulp.task('default', ['iconfont']); 
+});
