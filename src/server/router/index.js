@@ -1,5 +1,5 @@
 /**
- * 首页路由
+ * @description 首页路由
  */
 
  'use strict';

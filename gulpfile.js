@@ -1,27 +1,7 @@
 'use strict';
 var gulp = require('gulp');
 
-var generateIconfontCss = require('./gulp/generate-iconfont-css');
-var replaceIconfontUrl  = require('./gulp/replace-iconfont-path');
-/*	iconfont = require('gulp-iconfont'),
-	iconfontCss = require('gulp-iconfont-css');
+var generateIconfontCss = require('./gulp/task/generate-iconfont-css');//根据svg生产字体图标
+var replaceIconfontUrl  = require('./gulp/task/replace-iconfont-path');//更新字体样式图标路径
 
-
-gulp.task('iconfont', function(){
-	gulp.src('src/base/svg/*.svg')
-		.pipe(iconfontCss({
-			fontName: 'icomoon',
-			path: 'src/base/template/_font.scss',
-			targetPath: '../../scss/mod/_font.scss',
-			fontPath: '../../css/font/'
-		}))
-		.pipe(iconfont({
-			fontName: 'icomoon',
-			fontHeight: 1024,
-			formats: ['ttf', 'eot', 'woff', 'svg']
-		}))
-		.pipe(gulp.dest('src/base/css/font/'));
-});*/
-
-//run default taks of gulp
-gulp.task('default', ['iconfont']); 
+gulp.task('default', ['iconfont', 'updateUrl']);
