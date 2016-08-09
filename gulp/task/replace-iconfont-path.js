@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var gulp = require('gulp');
 function replaceUrl() {
-	var fileUrl = path.resolve(__dirname, '..', 'assets', 'app', 'page', 'vendors', 'css', 'vendors.css');
+	var fileUrl = path.resolve(__dirname, '..', '..', 'assets', 'app', 'page', 'vendors', 'css', 'vendors.css');
 	if(!fs.existsSync(fileUrl)){
 		console.log('****iconfont 路径更新没有执行****');
 		return;
