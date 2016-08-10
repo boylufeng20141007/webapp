@@ -10,9 +10,9 @@ var pageHeader = React.createClass({
 	render: function () {
 		return (
 			<header className="page-header clearfix">
-				<div className="back f-left icon-search" id="J-back"></div>
+				<div className="back f-left icon-menu" id="J-back"></div>
 				<div className="title">FEVIP</div>
-				<div className="J-search f-right" id="search">搜索</div>
+				<div className="J-search f-right icon-search" id="search"></div>
 			</header>
 		);
 	}
