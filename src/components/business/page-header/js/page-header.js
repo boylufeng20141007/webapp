@@ -4,18 +4,18 @@
  'use strict';
  require('../css/page-header.css');
 
-//var $ = require('zepto');
- var pageHeader = {
- 	//初始化
- 	init: function (){
- 		var _this = this;
- 		_this.bindEvent();
- 	},
- 	//绑定事件
- 	bindEvent: function (){
- 		/*$('#J-back').click(function (){
- 			alert('xxx');
- 		});*/
- 	}
- };
+var React = require('react');
+
+var pageHeader = React.createClass({
+	render: function () {
+		return (
+			<header className="page-header clearfix">
+				<div className="back f-left icon-search" id="J-back"></div>
+				<div className="title">FEVIP</div>
+				<div className="J-search f-right" id="search">搜索</div>
+			</header>
+		);
+	}
+});
+
  module.exports = pageHeader;
