@@ -9,7 +9,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 var ProvidePlugin = webpack.ProvidePlugin;
-var debug = process.env.NODE_ENV == 'prod'? true : false;
+var debug = (process.env.NODE_ENV == 'prod' || process.env.NODE_ENV == 'development')? true : false;
 console.log(debug?'***当前环境:开发环境':'***当前环境:生产环境'+'***');
 var config = {
  	entry: {
