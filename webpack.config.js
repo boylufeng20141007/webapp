@@ -107,7 +107,7 @@ function deleteBundleFile(path) {
 function updateIconfontUrl(path){
     if(!fs.existsSync(path)) return;
 }
-deleteBundleFile(path.resolve(__dirname, 'assets'));
+deleteBundleFile(path.resolve(__dirname, 'assets', 'app'));
 //deleteBundleFile(path.resolve(__dirname, 'assets', 'app', 'css', 'font'));
 //updateIconfontUrl(path.resolve(__dirname, 'src', 'css', 'common.css'));
 setConfig();

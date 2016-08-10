@@ -3,8 +3,9 @@
  * @author lux.lu
  */
  'use strict';
- var gulp = require('gulp');
+var gulp = require('gulp');
 
- gulp.task('watch:updateUrl', function (argument) {
- 	 /* body... */ 
- });
+var watcher = gulp.watch('../../assets/app/page/vendors/css/vendors.css', ['updateUrl']);
+watcher.on('change', function(event){
+	console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+});
