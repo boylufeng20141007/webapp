@@ -4,6 +4,8 @@
 
  'use strict';
 
+ var dao = require('../database_CRUD/mysql');
+
 function indexRouter(router){
 	router.get('/', function *(next){
 		yield this.render('index/tmpl/index', {
