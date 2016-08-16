@@ -7,26 +7,28 @@ var path = require('path'),
 	mysql = require('mysql'),
 	config = require('../config/database/mysql'),
 	pool = mysql.createPool({
-	connectionLimit: config.connectionLimit,
-	host: config.host,
-	user: config.user,
-	password: config.password,
-	database: config.database
-});
+		'connectionLimit': config.connectionLimit,
+		'host': config.host,
+		'user': config.user,
+		'password': config.password,
+		'database': config.database
+	});
 
-function execQuery(sql, values, callback){
+function execQuery(sql, callback){
 	var errorInfo;
 	pool.getConnection(function (err, connection) {
 		if(err){
-			errorInfo = 'DB-数据库获取链接异常';
+			errorInfo = 'DB-数据库获取链接异常：\n' + err;
+			console.log(errorInfo);
 			throw errorInfo;
 		}else{
-			var querys = connection.query(sql, values, function (err, rows) {
-				release(connection);
+			var querys = connection.query(sql, function (err, rows) {
 				if(err){
-					errorInfo = 'DB-SQL语句执行错误' + err;
+					errorInfo = 'DB-SQL语句执行错误\n' + err;
+					release(connection);
 					callback(errorInfo);
 				}else{
+					release(connection);
 					callback(null, rows);
 				}
 			});
@@ -35,8 +37,8 @@ function execQuery(sql, values, callback){
 }
 function release(connection){
 	try {
-		conneciton.release(function (error) {
-			if(error){
+		conneciton.release(function (err) {
+			if(err){
 				console.log('DB_关闭数据库链接异常!');
 			}
 		});

@@ -8,6 +8,8 @@
 
 function indexRouter(router){
 	router.get('/', function *(next){
+		var rows = yield dao.getArticleById('test', 1);
+		console.log(rows);
 		yield this.render('index/tmpl/index', {
 			layout: false,
 			title: '唯品会-FE首页',
